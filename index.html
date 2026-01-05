@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Trust-Trade</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111827;
+}
+
+/* ================= TOP NAV ================= */
+.top-nav {
+  height: 64px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: relative;
+  z-index: 50;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+/* LOGO SIZE FIX */
+.nav-logo {
+  height: 36px;
+}
+
+@media (max-width: 480px) {
+  .nav-logo {
+    height: 32px;
+  }
+}
+
+/* ================= LANGUAGE ================= */
+.language {
+  position: relative;
+}
+
+.language-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.language-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* desktop default */
+.language-menu {
+  position: absolute;
+  right: 0;
+  top: 38px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  width: 220px;
+  display: none;
+  z-index: 999;
+}
+
+.language-menu div {
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.language-menu div:hover {
+  background: #f9fafb;
+}
+
+/* ================= PAGE ================= */
+.page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= AUTH ================= */
+.auth-wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 28px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ================= TABS ================= */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 24px;
+}
+
+.tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px;
+  font-size: 14px;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.tab.active {
+  color: #000;
+  font-weight: 600;
+  border-bottom: 2px solid #000;
+}
+
+/* ================= FORMS ================= */
+.auth-form { display: none; }
+.auth-form.active { display: block; }
+
+.form-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #facc15;
+}
+
+/* PASSWORD TOGGLE */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 36px;
+  cursor: pointer;
+}
+
+.toggle-password svg {
+  width: 18px;
+  height: 18px;
+  stroke: #6b7280;
+}
+
+/* PASSWORD RULES */
+.password-rules {
+  margin-top: 8px;
+  padding-left: 16px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.password-rules li {
+  margin-bottom: 4px;
+}
+
+/* CHECKBOX */
+.checkbox {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  margin: 18px 0;
+}
+
+.checkbox input {
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+}
+
+/* LINKS */
+.link {
+  text-align: center;
+  font-size: 12px;
+  color: #2563eb;
+  margin-top: 14px;
+  cursor: pointer;
+}
+
+/* BUTTONS */
+.primary-btn {
+  width: 100%;
+  background: #facc15;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #eab308;
+}
+
+.divider {
+  text-align: center;
+  font-size: 12px;
+  color: #6b7280;
+  margin: 20px 0;
+}
+
+.google-btn {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.google-btn img {
+  width: 18px;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  max-width: 900px;
+  margin: 40px auto 20px;
+  padding: 0 16px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.footer-links {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+/* ================= MOBILE FIX ================= */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 24px 20px;
+  }
+
+  .language-menu {
+    position: fixed;
+    top: 64px;
+    right: 12px;
+    z-index: 9999;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top-nav">
+  <div class="nav-left">
+    <img src="images/imger.jpeg" class="nav-logo" alt="Trust-Trade Logo">
+  </div>
+
+  <div class="language" data-aos="fade-down">
+    <button class="language-btn">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/>
+        <path d="M3.6 9h16.8M3.6 15h16.8M12 3c3 3.6 3 13.4 0 18M12 3c-3 3.6-3 13.4 0 18"/>
+      </svg>
+    </button>
+
+    <div class="language-menu">
+      <div>English</div>
+      <div>العربية</div>
+      <div>বাংলা</div>
+      <div>Español</div>
+      <div>Français</div>
+      <div>Português</div>
+      <div>Bahasa Indonesia</div>
+      <div>Tiếng Việt</div>
+      <div>简体中文</div>
+      <div>O‘zbek</div>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+<div class="auth-wrapper" data-aos="fade-up">
+
+<h1>Welcome to Trust-Trade</h1>
+
+<div class="tabs">
+  <button class="tab active" data-tab="signin">Sign in</button>
+  <button class="tab" data-tab="signup">Create an account</button>
+</div>
+
+<!-- SIGN IN -->
+<form id="signin" class="auth-form active">
+
+  <div class="form-group">
+    <label>Your email address</label>
+    <input type="email">
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" class="password-input">
+    <span class="toggle-password"></span>
+  </div>
+
+  <button class="primary-btn">Sign in</button>
+
+  <div class="divider">Or sign in with</div>
+
+  <button class="google-btn">
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg">
+    Google
+  </button>
+
+  <p class="link">I forgot my password</p>
+</form>
+
+<!-- CREATE ACCOUNT -->
+<form id="signup" class="auth-form">
+
+  <div class="form-group">
+    <label>Full name</label>
+    <input type="text">
+  </div>
+
+  <div class="form-group">
+    <label>Your email address</label>
+    <input type="email">
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" class="password-input">
+    <span class="toggle-password"></span>
+
+    <ul class="password-rules">
+      <li>Between 8–15 characters</li>
+      <li>Upper & lower case letters</li>
+      <li>At least one number</li>
+      <li>At least one special character</li>
+    </ul>
+  </div>
+
+  <div class="form-group">
+    <label>Referral code <span style="color:#9ca3af;">(Optional)</span></label>
+    <input type="text">
+  </div>
+
+  <div class="checkbox">
+    <input type="checkbox">
+    <span>
+      I agree to the <a href="#">Terms and Conditions</a> and
+      <a href="#">Privacy Policy</a>
+    </span>
+  </div>
+
+  <button class="primary-btn">Create account</button>
+
+  <div class="divider">Or sign up with</div>
+
+  <button class="google-btn">
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg">
+    Google
+  </button>
+</form>
+
+</div>
+</main>
+
+<footer class="footer">
+<p>Trust-Trade does not offer services to residents of certain jurisdictions including the USA, Iran, North Korea, the European Union, the United Kingdom and others.</p>
+<p>Trading in CFDs and leveraged products involves substantial risk of loss.</p>
+<p>The information on this website does not constitute investment advice.</p>
+
+<div class="footer-links">
+  <a href="#">Privacy Agreement</a>
+  <a href="#">Risk disclosure</a>
+  <a href="#">Preventing money laundering</a>
+  <a href="#">Security instructions</a>
+  <a href="#">Legal documents</a>
+  <a href="#">Complaints Handling Policy</a>
+</div>
+
+<p style="margin-top:12px;">© 2008–2026. Trust-Trade</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 600, once: true });
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll('.tab,.auth-form')
+      .forEach(e => e.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  };
+});
+
+const langBtn = document.querySelector('.language-btn');
+const langMenu = document.querySelector('.language-menu');
+
+langBtn.onclick = () => {
+  langMenu.style.display =
+    langMenu.style.display === 'block' ? 'none' : 'block';
+};
+
+/* PASSWORD TOGGLE SCRIPT – CORRECTED ONLY */
+const eyeOpen = `
+<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+  <path d="M1.5 12s4-7.5 10.5-7.5S22.5 12 22.5 12s-4 7.5-10.5 7.5S1.5 12 1.5 12Z"/>
+  <circle cx="12" cy="12" r="3.5"/>
+</svg>`;
+
+const eyeClosed = `
+<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+  <path d="M3 3l18 18"/>
+  <path d="M1.5 12S5.5 19.5 12 19.5c2.3 0 4.3-.7 6-2"/>
+</svg>`;
+
+document.querySelectorAll('.toggle-password').forEach(toggle => {
+  const input = toggle.previousElementSibling;
+  toggle.innerHTML = eyeClosed;
+
+  toggle.addEventListener('click', () => {
+    const hidden = input.type === 'password';
+    input.type = hidden ? 'text' : 'password';
+    toggle.innerHTML = hidden ? eyeOpen : eyeClosed;
+  });
+});
+</script>
+
+</body>
+</html>
